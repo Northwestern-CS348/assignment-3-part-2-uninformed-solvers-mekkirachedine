@@ -1,19 +1,30 @@
-"""
-For a game with 8 tiles of blocks on a 3x3 grid,
-write down the Facts and Rules to model the game state 
-shown as the follows:
+﻿
+fact: (X tile5 pos1)
+fact: (Y tile5 pos1)
+fact: (X tile4 pos2)
+fact: (Y tile4 pos1)
+fact: (X empty pos3)
+fact: (Y empty pos1)
+fact: (X tile8 pos3)
+fact: (Y tile8 pos2)
+fact: (X tile2 pos3)
+fact: (Y tile2 pos3)
+fact: (X tile3 pos2)
+fact: (Y tile3 pos3)
+fact: (X tile7 pos1)
+fact: (Y tile7 pos3)
+fact: (X tile6 pos1)
+fact: (Y tile6 pos2)
+fact: (X tile1 pos2)
+fact: (Y tile1 pos2)
 
- y\\x   pos1     pos2     pos3
-     ----------------------------
-pos1 | tile5  | tile4  | empty  |
-     ----------------------------
-pos2 | tile6  | tile1  | tile8  |
-     ----------------------------
-pos3 | tile7  | tile3  | tile2  |
-     ----------------------------
+rule: ((X ?t1 ?p) (X ?t2 ?p) (Y ?t1 pos2)) -> (adjacent ?t1 ?t2)
+rule: ((X ?t1 ?p) (X ?t2 ?p) (Y ?t2 pos2)) -> (adjacent ?t1 ?t2)
+rule: ((Y ?t1 ?p) (Y ?t2 ?p) (X ?t1 pos2)) -> (adjacent ?t1 ?t2)
+rule: ((Y ?t1 ?p) (Y ?t2 ?p) (X ?t2 pos2)) -> (adjacent ?t1 ?t2)
 
-Example: 
-fact: (pred obj1 obj2)
-rule: ((pred obj1 obj2) (pred obj2 obj3)) -> (pred obj1 obj3)
+rule: ((X ?t ?px1) (Y ?t ?py1) (X empty ?px2) (Y empty ?py2) (adjacent ?t empty)) -> (movable ?t ?px1 ?py1 ?px2 ?py2)
 
-"""
+
+
+
